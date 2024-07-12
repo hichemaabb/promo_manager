@@ -1,7 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
-import { RoleService } from "./role.service";
-import { Role } from "./role.entity/role.entity";
-
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { RoleService } from './role.service';
+import { Role } from './role.entity/role.entity';
 
 @Controller('roles')
 export class RoleController {
@@ -22,14 +21,13 @@ export class RoleController {
   create(@Body() role: Role): Promise<Role> {
     return this.roleService.create(role);
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
-    return this.roleService.remove(id);
-  }
+  
   @Delete(':id')
   deleteRole(@Param() params) {
-      return this.service.deleteRole(params.id);
+    return this.service.deleteRole(params.id);
   }
-
+  @Put()
+  update(@Body() Role: Role) {
+    return this.service.updateRole(Role);
+  }
 }

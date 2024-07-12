@@ -1,4 +1,4 @@
-import { UtilisateurEntity } from './utilisateur.entity';
+import { UtilisateurEntity } from "./utilisateur.entity";
 
 describe('UtilisateurEntity', () => {
   it('should be defined', () => {

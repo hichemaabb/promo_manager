@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { Matiere } from 'src/matiere/matiere.entity/matiere.entity';
 
 @Entity()
@@ -21,14 +27,11 @@ export class Salle {
   @Column()
   PresenceTableau: boolean;
 
-  @Column()
-  EstDisponible: boolean;
-
-  @ManyToMany(() => Matiere, matiere => matiere.salles)
+  @ManyToMany(() => Matiere, (matiere) => matiere.salles)
   @JoinTable({
-    name: "salle_matiere",
-    joinColumn: { name: "salleId", referencedColumnName: "IdSalle" },
-    inverseJoinColumn: { name: "matiereId", referencedColumnName: "IdMatiere" }
+    name: 'salle_matiere',
+    joinColumn: { name: 'salleId', referencedColumnName: 'IdSalle' },
+    inverseJoinColumn: { name: 'matiereId', referencedColumnName: 'IdMatiere' },
   })
   matieres: Matiere[];
 }

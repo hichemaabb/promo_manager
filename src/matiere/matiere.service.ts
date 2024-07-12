@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { Matiere } from "./matiere.entity/matiere.entity";
-import { Repository } from "typeorm";
-import { InjectRepository } from "@nestjs/typeorm";
+import { Injectable } from '@nestjs/common';
+import { Matiere } from './matiere.entity/matiere.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class MatiereService {

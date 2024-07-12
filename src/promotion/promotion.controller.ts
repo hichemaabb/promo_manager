@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { PromotionService } from './promotion.service';
 import { Promotion } from './promotion.entity/promotion.entity';
 
@@ -23,6 +23,11 @@ export class PromotionController {
 
   @Delete(':id')
   remove(@Param('id') id: number): Promise<void> {
+    return this.promotionService.remove(id);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: number): Promise<void> {
     return this.promotionService.remove(id);
   }
 }

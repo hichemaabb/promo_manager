@@ -1,7 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { Matiere } from "./matiere.entity/matiere.entity";
-import { MatiereService } from "./matiere.service";
-
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { Matiere } from './matiere.entity/matiere.entity';
+import { MatiereService } from './matiere.service';
 
 @Controller('matieres')
 export class MatiereController {
@@ -24,17 +32,15 @@ export class MatiereController {
   }
 
   @Put()
-    update(@Body() Matiere: Matiere) {
-        return this.service.updateMatiere(Matiere);
-    }
+  update(@Body() Matiere: Matiere) {
+    return this.service.updateMatiere(Matiere);
+  }
+ 
+
   @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
-    return this.matiereService.remove(id);
+  deleteMatiere(@Param() params) {
+    return this.service.deleteMatiere(params.id);
   }
 
-  @Delete(':id')
-    deleteMatiere(@Param() params) {
-        return this.service.deleteMatiere(params.id);
-    }
+} 
 
-}

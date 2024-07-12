@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Promotion } from './promotion.entity/promotion.entity'; 
+import { Promotion } from './promotion.entity/promotion.entity';
 
 import { from } from 'rxjs';
 

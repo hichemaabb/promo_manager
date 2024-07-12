@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
-import { SalleService } from "./salle.service";
-import { Salle } from "./salle.entity/salle.entity";
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { SalleService } from './salle.service';
+import { Salle } from './salle.entity/salle.entity';
 
 @Controller('salles')
 export class SalleController {
@@ -22,14 +22,14 @@ export class SalleController {
     return this.salleService.create(salle);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
-    return this.salleService.remove(id);
-  }
 
   @Delete(':id')
   deleteSalle(@Param() params) {
-      return this.service.deleteSalle(params.id);
+    return this.service.deleteSalle(params.id);
   }
 
+  @Put()
+  update(@Body() Salle: Salle) {
+    return this.service.updateSalle(Salle);
+  }
 }

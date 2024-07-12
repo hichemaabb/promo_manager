@@ -15,7 +15,10 @@ export class SalleService {
   }
 
   findOne(id: number): Promise<Salle> {
-    return this.salleRepository.findOne({ where: { IdSalle: id }, relations: ['matieres'] });
+    return this.salleRepository.findOne({
+      where: { IdSalle: id },
+      relations: ['matieres'],
+    });
   }
 
   create(salle: Salle): Promise<Salle> {

@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
-import { Utilisateur } from 'src/utilisateur/utilisateur.entity/utilisateur.entity'; 
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity/utilisateur.entity';
 
 @Entity()
 export class Promotion {
@@ -18,6 +18,6 @@ export class Promotion {
   @Column({ length: 50 })
   NiveauDiplome: string;
 
-  @ManyToMany(() => Utilisateur, utilisateur => utilisateur.promotions)
+  @OneToMany(() => Utilisateur, (utilisateur) => utilisateur.promotion)
   utilisateurs: Utilisateur[];
 }

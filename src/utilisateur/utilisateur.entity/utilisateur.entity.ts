@@ -1,6 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Promotion } from 'src/promotion/promotion.entity/promotion.entity';
-import { Role } from 'src/role/role.entity/role.entity'; 
+import { Role } from 'src/role/role.entity/role.entity';
 
 @Entity()
 export class Utilisateur {
@@ -13,14 +19,17 @@ export class Utilisateur {
   @Column({ length: 50 })
   Prenom: string;
 
-  @Column({ length: 50, nullable: true })
+  @Column({ length: 10, nullable: true })
   Tel: string;
 
   @Column('date')
   DateNaissance: Date;
 
   @Column({ length: 50 })
-  Email: string;
+  email: string;
+
+  @Column()
+  mdp: string;
 
   @Column('date')
   DateCreation: Date;
@@ -28,19 +37,14 @@ export class Utilisateur {
   @Column({ default: true })
   EstActif: boolean;
 
-  @ManyToMany(() => Promotion, promotion => promotion.utilisateurs)
-  @JoinTable({
-    name: "utilisateur_promotion",
-    joinColumn: { name: "utilisateurId", referencedColumnName: "IdUtilisateur" },
-    inverseJoinColumn: { name: "promotionId", referencedColumnName: "IdPromo" }
-  })
-  promotions: Promotion[];
-
-  @ManyToMany(() => Role, role => role.utilisateurs)
-  @JoinTable({
-    name: "utilisateur_role",
-    joinColumn: { name: "utilisateurId", referencedColumnName: "IdUtilisateur" },
-    inverseJoinColumn: { name: "roleId", referencedColumnName: "IdRole" }
-  })
-  roles: Role[];
+ 
+  @ManyToOne(() => Promotion, (promotion) => promotion.utilisateurs)
+  @JoinColumn({ name: 'promotionId', referencedColumnName: 'IdPromo' })
+  promotion: Promotion;
+  
+  @ManyToOne(() => Role, (role) => role.utilisateurs, {nullable:true})
+  @JoinColumn({ name: 'roleId', referencedColumnName: 'IdRole' })
+  role: Role;
 }
+
+
